@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Developing with jQuery Mobile</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.css" />
+		<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.js"></script>
+
+		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="css/mainstyle.css" rel="stylesheet">
+		<link href="css/thumbnail-gallery.css" rel="stylesheet">
+		<script language="javascript" src="js/getRandomImage.js"></script>
+		<script type="text/javascript"> var imgStr = getRandomImage(random_images_array);</script>
+
+	</head>
+	<body>
+		<div class = "text">
+		<p>Shake your phone to get a randomly generated <br>
+			picture of math!</p>
+		</div>
+			<div id="img-container" class="col-md-4 col-sm-6 pic-thumb">
+<!--                 <script type="text/javascript">document.write(imgStr);</script> -->
+            </div>  
+
+
+
+		<script src="js/shake.js"></script>
+
+		<script> 
+		$('#img-container').html(imgStr);
+
+		// create a new Shake instance:
+		var myShakeEvent = new Shake({
+		   		 threshold: 15, // optional shake strength threshold
+		    	timeout: 100 // optional, determines the frequency of event generation
+		});
+		// Start listening to device motion:
+		myShakeEvent.start();
+		//Register a shake event listener on window with your callback:
+		window.addEventListener('shake', shakeEventDidOccur, false);
+
+		//function to call when shake occurs 
+		function shakeEventDidOccur () {
+			window.location.reload();
+		    //put your own code here etc.
+		    // alert('shake!');
+		}
+		</script>
+	</body>
+</html>
